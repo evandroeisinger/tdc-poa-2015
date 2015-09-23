@@ -14,30 +14,21 @@ Pipe.
 ## Spawn, parent process and pid.
 
 O termo spawn se refere ao ato de um processo carregar e executar um processo filho.
-O processo que criou esse proceso filho é chamado de Parent process. PID (process id)
+O processo que criou esse processo filho é chamado de Parent process. PID (process id)
 é um número que o sistema operacional atribui a esses processos.
 
 ## ChildProcess.exec()
 
-O método exec() permite executar um processo e armazenar o retorno do processo em uma variavél.
-Essa variavél é um buffer (por padrão no máximo 200kb).
+O método exec() permite executar um processo e armazenar o retorno do processo em uma variável.
+Essa variável é um buffer (por padrão no máximo 200kb).
 
 ## ChildProcess.spawn()
 
-O método spawn executa um processo filho, porém retorna o resultado
+O método spawn carrega e executa um processo filho, porém retorna o resultado através de um stream.
+A cada vez que o buffer atinge seu limite, ele chama o callback registrado pela aplicação.
 
+## ChildProcess.fork()
 
-
-
-
-Overview
-
-Limitacoes
-
-Sync
-
-Paralelismo
-
-
-
-Comparar child proc (nova instancia do v8 e 30MB)
+Do mesmo modo que o spawn, o fork carrega um processo filho e executa ele, porém do nodejs.
+O processo pai pode enviar e receber mensagens (utilizando a classe EventEmitter) de maneira simples, via pipe.
+Segundo a documentação, esse novo processo cria uma nova instancia da V8, o que consome no mínimo 10MB de memória e 30ms de execução.
