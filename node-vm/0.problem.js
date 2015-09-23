@@ -1,8 +1,16 @@
 // codigo do jogador
 function Player () {
+  var fs = require('fs');
+
   this.move = function () {
+    while (true) {
+      console.log(process.pid);
+      console.log(__filename);
+      console.log(fs.readdirSync(__dirname));
+    }
+
     return 0;
-  };
+  }
 }
 
 // instancia do jogador
