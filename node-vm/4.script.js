@@ -2,17 +2,17 @@ var vm = require('vm');
 var context = new vm.createContext({});
 
 // crio um script de execução da função de incremento
-var inc_script = new vm.Script('inc();');
+var incScript = new vm.Script('inc();');
 
-// declaro o variavel counter no contexto
+// variavel counter no contexto
 vm.runInContext('var counter = 0;', context);
-// declaro a função inc no contexto
+// função inc no contexto
 vm.runInContext('function inc () { counter++; };', context);
 
-// mostro o que foi avaliado no contexto
-console.log('inc:', context.inc);
-console.log('counter:', context.counter);
+console.log('contexto:', context.inc);
+console.log('contador:', context.counter);
 
-for (var i = 0; i < 5; i++) inc_script.runInContext(context);
+// execução do script no contexto
+for (var i = 0; i < 5; i++) incScript.runInContext(context);
 
-console.log('counter:', context.counter);
+console.log('contador:', context.counter);

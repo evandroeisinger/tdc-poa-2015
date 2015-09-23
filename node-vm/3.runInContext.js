@@ -6,17 +6,18 @@ vm.runInContext('var counter = 0;', context);
 // declaro a função inc no contexto
 vm.runInContext('function inc () { counter++; };', context);
 
-// mostra o que foi avaliado no contexto
-console.log('context:', context.inc);
-console.log('inc:', context.inc);
-console.log('counter:', context.counter);
+// o que foi avaliado no contexto
+console.log('contexto:', context);
+
+// valor inicial do counter
+console.log('contador:', context.counter);
 
 // executo a função inc do contexto 5 vezes
-vm.runInContext('inc()', context);
-vm.runInContext('inc()', context);
-vm.runInContext('inc()', context);
-vm.runInContext('inc()', context);
-vm.runInContext('inc()', context);
+vm.runInContext('inc();', context);
+vm.runInContext('inc();', context);
+vm.runInContext('inc();', context);
+vm.runInContext('inc();', context);
+vm.runInContext('inc();', context);
 
-// mostro o valor atualizado do counter
-console.log('counter:', context.counter);
+// valor atualizado do counter
+console.log('contador:', context.counter);

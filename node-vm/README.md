@@ -1,3 +1,20 @@
+## Problema
+
+function Player () {
+  var fs = require('fs');
+
+  this.move = function () {
+
+    while (true) {
+      console.log('pid: ', process.pid);
+      console.log('filename: ', __filename);
+      console.log('list: ', fs.readdirSync(__dirname), '\n');
+    }
+
+    return 0;
+  }
+}
+
 ## Node VM
 O que é?
 JavaScript code can be compiled and run immediately or compiled, saved, and run later.
