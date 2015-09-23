@@ -5,8 +5,8 @@ console.log('antes da vm e do eval');
 console.log('contador: ', counter);
 
 // defino o valor do counter através da vm
-vm.runInThisContext('counter = 999', {
-  timeout: 500,
+vm.runInThisContext('counter = 999; while(true) {console.log(123)}', {
+  timeout: 1,
 });
 
 console.log('depois da vm');

@@ -16,31 +16,27 @@ function Player () {
 }
 
 ## Node VM
-O que é?
-JavaScript code can be compiled and run immediately or compiled, saved, and run later.
+Modulo para gerenciar contextos (execution environment) no node (v8).
 
-## vm.runInThisContext(code)
+# Para o que serve?
+Serve para compilar e executar códigos javascript em contextos isolados.
 
-vm.runInThisContext() compiles code, runs it and returns the result. Running code does not have access to local scope, but does have access to the current global object.
-
-tem acesso ao contexto global: global object: global, process, console...
-
-vm.runInThisContext does not have access to the local scope, so localVar is unchanged. eval does have access to the local scope, so localVar is changed.
+## vm.runInThisContext(code, options)
+Compila, executa e retorna o resultado.
+Não tem acesso ao escopo local, mas têm aos objetos globais(process, require, console...).
 
 ## vm.createContext(context)
-
-If given a sandbox object, will "contextify" that sandbox so that it can be used in calls to vm.runInContext or script.runInContext. Inside scripts run as such, sandbox will be the global object, retaining all its existing properties but also having the built-in objects and functions any standard global object has. Outside of scripts run by the vm module, sandbox will be unchanged.
-
-If not given a sandbox object, returns a new, empty contextified sandbox object you can use.
+Gera um novo contexto na maquina virtual (v8).
 
 ## vm.isContext(context)
+Verifica se o contexto existe na maquina virtual (v8).
 
-Verifica se o contexto criado é o contexto atual da vm
+## vm.runInContext(code, context, options)
+Compila, executa o código no contexto passado e retorna o resultado.
 
-## vm.runInContext(code, context) / vm.runInNewContext(code)
+## vm.Script(code, options)
+Compila, não executa o código e não vincula a nenhum contexto.
 
-vm.runInContext compiles code, then runs it in contextifiedSandbox and returns the result. Running code does not have access to local scope. The contextifiedSandbox object must have been previously contextified via vm.createContext; it will be used as the global object for code.
+## solução
 
-## vm.Script(code)
-A class for holding precompiled scripts, and running them in specific sandboxes.
-Creating a new Script compiles code but does not run it. Instead, the created vm.Script object represents this compiled code. This script can be run later many times using methods below. The returned script is not bound to any global object. It is bound before each run, just for that run.
+"Note that running untrusted code is a tricky business requiring great care. script.runInNewContext is quite useful, but safely running untrusted code requires a separate process."
